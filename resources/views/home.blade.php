@@ -11,10 +11,12 @@
         </tr>
     </thead>
     <tbody>
+        @foreach($post as $p)
         <tr>
-            <td>The table body</td>
-            <td>with two columns</td>
+            <td>{{ $p->titre }}</td>
+            <td>{{ $p->contenu }}</td>
         </tr>
+        @endforeach
     </tbody>
 </table>
 
