@@ -19,6 +19,8 @@ Route::get('/store/index', [PostApiController::class, 'index']);
 
 Route::post('/store/insert', [PostApiController::class, 'insert']);
 
+Route::get('store/delete/{id}', [PostApiController::class, 'delete']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

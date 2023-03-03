@@ -33,4 +33,16 @@ class PostApiController extends Controller
         return response(['message' => 'Un post est ajouté avec succès']);
 
     }
+
+    public function delete($id)
+    {
+        $post= Post::where('id', $id)->first();
+
+        if($post){
+            $post->delete();
+            return response(['message' => 'le post est supprimé avec succès']);
+        }else{
+            return response(['message' =>'Ce post a peut-etre déjà supprimé ou n\'existe pas']);
+        }
+    }
 }
