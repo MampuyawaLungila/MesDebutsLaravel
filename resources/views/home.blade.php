@@ -3,7 +3,7 @@
     <title>
         Mon premier projet en Laravel
     </title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href=" {{asset('css/style.css')}} ">
     <body>
         <table>
           <img class="card-img-top" src="holder.js/100px180/" alt="Title">

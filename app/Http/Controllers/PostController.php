@@ -23,6 +23,8 @@ class PostController extends Controller
         return view('create_post');
     }
 
+// CREATE
+
     public function store(Request $request)
     {
         $post= new Post;
@@ -35,6 +37,7 @@ class PostController extends Controller
         }
 
     }
+// La Suppression
 
     public function delete($id)
     {
@@ -56,6 +59,9 @@ class PostController extends Controller
         $post=Post::where('id', $id)->first();
         return view('edit_post', compact('post'));
     }
+
+    // Mise à jour
+    
     public function update(Request $request){
         $post=Post::where('id', $request->id)->first();
         //dd($post);
