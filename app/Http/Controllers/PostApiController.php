@@ -7,6 +7,7 @@ use App\Models\Post;
 
 class PostApiController extends Controller
 {
+    // verification des données contenues dans notre base de données
 
     public function index()
     {
@@ -16,6 +17,7 @@ class PostApiController extends Controller
 
     }
 
+    // implementation de la fonction d'insertion ou de la création d'un post
 
     public function insert (Request $request)
     {
@@ -34,6 +36,8 @@ class PostApiController extends Controller
 
     }
 
+    // suppression ou DELETE d'un post ou occurence des données au travers de son identifiant
+
     public function delete($id)
     {
         $post= Post::where('id', $id)->first();
@@ -44,5 +48,12 @@ class PostApiController extends Controller
         }else{
             return response(['message' =>'Ce post a peut-etre déjà supprimé ou n\'existe pas']);
         }
+    }
+
+    //Selection ou SELECT d'un post au travers de son identifiant en particulier
+
+    public function show(Post $id)
+    {
+        return Post::find($id);
     }
 }
