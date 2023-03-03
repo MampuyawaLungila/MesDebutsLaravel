@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/store/index', [PostApiController::class, 'index']);
 
-Route::get('/store/test', [PostApiController::class, 'test']);
-
 Route::post('/store/insert', [PostApiController::class, 'insert']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
