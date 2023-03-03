@@ -61,7 +61,7 @@ class PostController extends Controller
     }
 
     // Mise à jour
-    
+
     public function update(Request $request){
         $post=Post::where('id', $request->id)->first();
         //dd($post);

@@ -32,7 +32,7 @@ class PostApiController extends Controller
         $post->contenu = $postData['contenu'];
         $post->save();
 
-        return response(['message' => 'Un post est ajouté avec succès']);
+        return response(['message' => 'Un post est ajouté avec succès'], 200);
 
     }
 
@@ -44,9 +44,9 @@ class PostApiController extends Controller
 
         if($post){
             $post->delete();
-            return response(['message' => 'le post est supprimé avec succès']);
+            return response(['message' => 'le post est supprimé avec succès'], 200);
         }else{
-            return response(['message' =>'Ce post a peut-etre déjà supprimé ou n\'existe pas']);
+            return response(['message' =>'Ce post a peut-etre déjà supprimé ou n\'existe pas'], 403);
         }
     }
 
@@ -54,6 +54,30 @@ class PostApiController extends Controller
 
     public function show(Post $id)
     {
-        return Post::find($id);
+        return Post::find($id)->first();
+    }
+
+    //Mise à jour d'une occurence au travers de son ID
+
+    public function edit(request $request, $id)
+    {
+        $postData= $request->validate([
+            'titre' => 'required|min:5',
+            'contenu' => 'required|min:5'
+        ]);
+
+        $post= Post::where('id', $id)->first();
+
+        if($post){
+            $post->titre = $postData['titre'];
+            $post->contenu = $postData['contenu'];
+
+            $post->update();
+
+            return response(['Messsage' => 'le Post a été modifié avec succès'], 200);
+        }
+        else{
+            return response(['Message' => 'l\'enregistrement n\'existe pas']);
+        }
     }
 }

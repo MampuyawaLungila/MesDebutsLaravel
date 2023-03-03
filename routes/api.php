@@ -23,6 +23,8 @@ Route::get('store/delete/{id}', [PostApiController::class, 'delete']);
 
 Route::get('store/show/{id}', [PostApiController::class, 'show']);
 
+Route::get('store/edit/{id}', [PostApiController::class, 'edit']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
