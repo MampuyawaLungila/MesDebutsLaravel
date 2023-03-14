@@ -22,6 +22,7 @@ Route::post('/store/insert', [PostApiController::class, 'insert']);
 Route::get('store/delete/{id}', [PostApiController::class, 'delete']);
 
 Route::get('store/show/{id}', [PostApiController::class, 'show']);
+Route::get('store/getComment/{post_id}', [PostApiController::class, 'getComment']);
 
 Route::get('store/edit/{id}', [PostApiController::class, 'edit']);
 

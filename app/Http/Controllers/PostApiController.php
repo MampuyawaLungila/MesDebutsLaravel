@@ -4,18 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\repository\PostInterface;
 
 class PostApiController extends Controller
 {
+    private PostInterface $postInterface;
+
+
+    public function __construct(PostInterface $_postInterface){
+        $this->postInterface=$_postInterface;
+
+    }
     // verification des données contenues dans notre base de données
 
     public function index()
     {
-        $post= Post::all();
+        $post= $this->postInterface->get_post();
 
         return response($post, 200);
 
     }
+
+
 
     // implementation de la fonction d'insertion ou de la création d'un post
 
@@ -52,9 +62,16 @@ class PostApiController extends Controller
 
     //Selection ou SELECT d'un post au travers de son identifiant en particulier
 
-    public function show(Post $id)
+    public function show($id)
     {
-        return Post::find($id)->first();
+        $post= $this->postInterface->get_post_by_id($id);
+        return response($post, 200);
+    }
+
+    public function getComment($post_id)
+    {
+        $comment=  $this->postInterface->get_post_comment($post_id);
+        return response($comment, 200);
     }
 
     //Mise à jour d'une occurence au travers de son ID

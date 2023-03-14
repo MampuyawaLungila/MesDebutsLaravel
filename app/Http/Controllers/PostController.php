@@ -7,12 +7,23 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 
 Use App\Models\Comment;
+use App\repository\PostInterface;
+
+
 
 class PostController extends Controller
 {
+    private PostInterface $postInterface;
+
+
+    public function __construct(PostInterface $_postInterface){
+        $this->postInterface=$_postInterface;
+
+    }
+
     public function index (){
 
-        $post = Post::all();
+        $post = $this->postInterface->get_post();
 
         return view('home', compact('post'));
     }
@@ -74,7 +85,7 @@ class PostController extends Controller
     }
 
     public function getComment($post_id){
-        $comments= Comment::where('post_id', $post_id);
+        $comments= $this->postInterface->get_post_comment($post_id);
         return dd($comments);
     }
 
